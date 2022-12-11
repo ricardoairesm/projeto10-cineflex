@@ -1,25 +1,38 @@
-import logo from './logo.svg';
-import './App.css';
+import styled from "styled-components";
+
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <TelaApp>
+      <Navbar>CINEFLEX</Navbar>
+      
+    </TelaApp>
   );
 }
 
 export default App;
+const TelaApp = styled.div`
+height:877px;
+width:375px;
+background-color:#E5E5E5;
+position:relative;
+`
+
+const Navbar = styled.div `
+position: absolute;
+width: 375px;
+height: 67px;
+left: 0px;
+top: 0px;
+display:flex;
+justify-content:center;
+align-items:center;
+color:#E8833A;
+font-family: 'Roboto';
+font-style: normal;
+font-weight: 400;
+font-size: 34px;
+
+background: #C3CFD9;
+
+`
