@@ -4,8 +4,18 @@ import axios from "axios";
 import styled from "styled-components";
 
 export default function SeatList() {
+
+    const [clicked, setClicked] = useState([]);
     const { idSessao } = useParams();
     const [assentos, setAssentos] = useState(undefined);
+
+    function escolherCadeira(cadeira) {
+        if (cadeira.status) {
+            const novoClick = [...clicked, cadeira.name];
+            console.log(novoClick);
+            setClicked(novoClick);
+        }
+    }
 
     useEffect(() => {
         const promise = axios.get(`https://mock-api.driven.com.br/api/v8/cineflex/showtimes/${idSessao}/seats`)
@@ -24,22 +34,42 @@ export default function SeatList() {
             <Title>Selecione o(s) assento(s)</Title>
             <AssentosList>
                 {assentos.seats.map((cadeira, index) => {
+                    if (clicked.includes(cadeira.name)) {
+                        return (
+                            <Cadeira onClick={() => {
+                                const novoClick = [];
+                                for(let i =0; i < clicked.length;i++){
+                                    if(clicked[i] != cadeira.name){
+                                        novoClick.push(clicked[i]);
+                                    }
+                                }
+                                console.log(novoClick);
+                                setClicked(novoClick);
+                            }} key={index} color="#1AAE9E" borda="#0E7D71">{cadeira.name}</Cadeira>
+                        )
+                    }
                     if (cadeira.isAvailable) {
                         return (
-                            <>
-                                <Cadeira color="#C3CFD9" borda="#808F9D">{index + 1}</Cadeira>
-                            </>
+                            <Cadeira onClick={() => {
+                                const novoClick = [...clicked, cadeira.name];
+                                console.log(novoClick);
+                                setClicked(novoClick);
+                            }} key={index} color="#C3CFD9" borda="#808F9D">{cadeira.name}</Cadeira>
                         )
                     }
 
                     return (
-                        <Cadeira color="#FBE192" borda="#F7C52B">{index + 1}</Cadeira>
+                        <Cadeira status={cadeira.isAvailable} onClick={escolherCadeira} key={index} color="#FBE192" borda="#F7C52B">{index + 1}</Cadeira>
                     )
                 })}
             </AssentosList>
             <Footer>
-                <img />
-                <h1>{assentos.movie.title}</h1>
+                <Borda>
+                    <img src={assentos.movie.posterURL} />
+                </Borda>
+                <h1>{assentos.movie.title}<br />
+                    {assentos.day.weekday} - {assentos.name}
+                </h1>
             </Footer>
         </>
     )
@@ -101,8 +131,8 @@ line-height: 13px;
 
 const Footer = styled.div`
 padding-left:10px;
+padding-top:14px;
 display:flex;
-align-items:center;
 position:fixed;
 height: 117px;
 width: 375px;
@@ -117,9 +147,6 @@ h1{
         font-style: normal;
         font-weight: 400;
         font-size: 26px;
-        line-height: 30px;
-        display: flex;
-        align-items: center;
         margin-left:14px;
         color: #293845;
     }

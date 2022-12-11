@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import styled from "styled-components";
 import HomeScreen from "./Components/homeScreen";
@@ -6,6 +7,7 @@ import SeatList from "./Components/seatsList";
 
 
 function App() {
+  const [clicked, setClicked] = useState([]);
 
 
   return (
@@ -16,7 +18,7 @@ function App() {
         <Routes>
           <Route path="/" element={<HomeScreen />} />
           <Route path="/sessoes/:idFilme" element={<ScheduleList />} />
-          <Route path="/assentos/:idSessao" element = {<SeatList/>}/>
+          <Route path="/assentos/:idSessao" element = {<SeatList setClicked = {setClicked}/>}/>
           <Route path="/sucesso"/>
         </Routes>
       </TelaApp>
