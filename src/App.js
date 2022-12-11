@@ -1,21 +1,33 @@
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 import styled from "styled-components";
+import HomeScreen from "./Components/homeScreen";
 
 
 function App() {
   return (
+    <BrowserRouter>
+    
+    
     <TelaApp>
       <Navbar>CINEFLEX</Navbar>
+      <Routes>
+        <Route path="/" element = {<HomeScreen/>}/>
+      </Routes>
       
     </TelaApp>
+    </BrowserRouter>
   );
 }
 
 export default App;
+
+
 const TelaApp = styled.div`
 height:877px;
 width:375px;
-background-color:#E5E5E5;
+background-color: white;
 position:relative;
+overflow:auto;
 `
 
 const Navbar = styled.div `
