@@ -22,7 +22,7 @@ export default function HomeScreen() {
             <Title>Selecione o filme</Title>
             <MovieList>
                 {movieList.map((movie) =>
-                    <Link key={movie.id} to = {`sessoes/${movie.id}`}>
+                    <Link key={movie.id} to = {`sessoes/${movie.id}` } data-test="movie" >
                         <Poster key={movie.id}>
                             <img src={movie.posterURL} />
                         </Poster>

@@ -47,7 +47,7 @@ export default function SeatList(props) {
             <Legenda/>
             <Inputs info = {info} setInfo = {setInfo}/>
             <Link to = "/sucesso">
-            <Botao disabled = {habilitar} onClick={()=>{
+            <Botao  data-test="book-seat-btn" disabled = {habilitar} onClick={()=>{
                 axios.post(postURL,{ 
                     ids:info[0].assentos,
                     name:info[0].name,
@@ -55,7 +55,7 @@ export default function SeatList(props) {
                 });     
             }}>Reservar assento(s)</Botao>
             </Link>
-            <Footer>
+            <Footer data-test="footer" >
                 <Borda>
                     <img src={assentos.movie.posterURL} />
                 </Borda>

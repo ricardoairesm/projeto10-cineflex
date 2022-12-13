@@ -7,20 +7,20 @@ export default function Sucesso(props) {
     return (
         <>
             <H1><p>Pedido feito com sucesso!</p></H1>
-            <H2>Filme e sessão<br />
+            <H2 data-test="movie-info">Filme e sessão<br />
                 <p>{info[0].filme}<br />
                     {info[0].data} {info[0].hora}</p>
             </H2>
-            <H3>Ingressos<br />
+            <H3 data-test="seats-info">Ingressos<br />
                 {info[0].cadeiras.map((cadeira) => <p>Assento {cadeira}</p>)}
             </H3>
-            <H4>Comprador<br />
+            <H4 data-test="client-info">Comprador<br />
                 <p>Nome: {info[0].name}<br />
                     CPF: {info[0].cpf}
                 </p>
             </H4>
             <Link to = "/">
-                <Botao onClick={() => {
+                <Botao data-test="go-home-btn" onClick={() => {
                     const newInfo = [{
                         name: "",
                         cpf: "",

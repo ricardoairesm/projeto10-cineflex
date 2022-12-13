@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 
 export default function ScheduleList(props) {
 
-    const {info, setInfo} = props;
+    const { info, setInfo } = props;
     const { idFilme } = useParams();
     const [horario, setHorario] = useState(undefined);
 
@@ -16,7 +16,7 @@ export default function ScheduleList(props) {
         promise.catch((err) => console.log(err.response.data))
     }, [])
 
-    
+
 
 
     if (horario === undefined) {
@@ -30,27 +30,31 @@ export default function ScheduleList(props) {
             <Title>Selecione o horário</Title>
             <TimeList>
                 {horario.days.map((sessao) =>
-                    <>
-                        <Day key={sessao.id + sessao.weekday}>{sessao.weekday} - {sessao.date}</Day>
+                    <Horarios  data-test="showtime" >
+
+                        <Day >{sessao.weekday} - {sessao.date}</Day>
                         {sessao.showtimes.map((hora) =>
                             <>
-                                <Link key={hora.id} to = {`/assentos/${hora.id}`} style={{ textDecoration: 'none' }}>
-                                    <Hour onClick={()=>{
+                                <Link key={hora.id} to={`/assentos/${hora.id}`} style={{ textDecoration: 'none' }}>
+                                    <Hour data-test="showtime" onClick={() => {
                                         const newInfo = [...info];
-                                        newInfo[0].filme = horario.title; 
-                                        newInfo[0].data = sessao.weekday; 
+                                        newInfo[0].filme = horario.title;
+                                        newInfo[0].data = sessao.weekday;
                                         newInfo[0].hora = hora.name;
-                                        console.log(newInfo); 
-                                        setInfo(newInfo)}
-                                    } key={hora.id}><p>{hora.name}</p></Hour>
+                                        console.log(newInfo);
+                                        setInfo(newInfo)
+                                    }
+                                    } ><p>{hora.name}</p></Hour>
                                 </Link>
+
                             </>
                         )}
 
-                    </>
+
+                    </Horarios>
                 )}
             </TimeList>
-            <Footer>
+            <Footer data-test="footer" >
                 <Borda>
                     <img src={horario.posterURL} />
                 </Borda>
@@ -61,9 +65,15 @@ export default function ScheduleList(props) {
         </>
     )
 }
+const Horarios = styled.div`
+display:flex;
+flex-wrap:wrap;
+`
 
 
-
+const DIV = styled.div`
+display:flex;
+`
 const Title = styled.div`
 position: absolute;
 width: 375px;
@@ -93,6 +103,9 @@ position:absolute;
 top:169px;
 left:30px;
 padding-bottom:117px;
+.div{
+    display:flex;
+}
 `
 
 const Day = styled.div`

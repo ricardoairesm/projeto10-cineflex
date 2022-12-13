@@ -12,7 +12,7 @@ export default function ListaAssentos(props) {
                 {assentos.seats.map((cadeira, index) => {
                     if (clicked.includes(cadeira.name)) {
                         return (
-                            <Cadeira onClick={() => {
+                            <Cadeira  data-test="seat" onClick={() => {
                                 const novoClick = [];
                                 const newInfo = [...info];
                                 for (let i = 0; i < clicked.length; i++) {
@@ -30,7 +30,7 @@ export default function ListaAssentos(props) {
                     }
                     if (cadeira.isAvailable) {
                         return (
-                            <Cadeira onClick={() => {
+                            <Cadeira data-test="seat" onClick={() => {
                                 const newInfo = [...info];
                                 newInfo[0].assentos.push(cadeira.id)
                                 newInfo[0].cadeiras.push(cadeira.name)
@@ -43,7 +43,7 @@ export default function ListaAssentos(props) {
                     }
 
                     return (
-                        <Cadeira key={index} color="#FBE192" borda="#F7C52B">{cadeira.name}</Cadeira>
+                        <Cadeira data-test="seat" key={index} color="#FBE192" borda="#F7C52B">{cadeira.name}</Cadeira>
                     )
                 })}
             </AssentosList>
