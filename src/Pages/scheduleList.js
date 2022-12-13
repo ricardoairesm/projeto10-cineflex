@@ -36,7 +36,7 @@ export default function ScheduleList(props) {
                         {sessao.showtimes.map((hora) =>
                             <>
                                 <Link key={hora.id} to={`/assentos/${hora.id}`} style={{ textDecoration: 'none' }}>
-                                    <Hour data-test="showtime" onClick={() => {
+                                    <Hour data-test="movie-day" onClick={() => {
                                         const newInfo = [...info];
                                         newInfo[0].filme = horario.title;
                                         newInfo[0].data = sessao.weekday;
