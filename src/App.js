@@ -1,13 +1,23 @@
 import { useState } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import styled from "styled-components";
-import HomeScreen from "./Components/homeScreen";
-import ScheduleList from "./Components/scheduleList";
-import SeatList from "./Components/seatsList";
+import HomeScreen from "./Pages/homeScreen";
+import ScheduleList from "./Pages/scheduleList";
+import SeatList from "./Pages/seatsList";
+import Sucesso from "./Pages/sucesso";
 
 
 function App() {
-  const [clicked, setClicked] = useState([]);
+  const [info,setInfo] = useState([{
+    name: "",
+    cpf: "",
+    assentos:[],
+    cadeiras:[],
+    filme:"",
+    data:"",
+    hora:"",
+  }])
+
 
 
   return (
@@ -16,10 +26,10 @@ function App() {
       <TelaApp>
         <Navbar>CINEFLEX</Navbar>
         <Routes>
-          <Route path="/" element={<HomeScreen />} />
-          <Route path="/sessoes/:idFilme" element={<ScheduleList />} />
-          <Route path="/assentos/:idSessao" element = {<SeatList setClicked = {setClicked}/>}/>
-          <Route path="/sucesso"/>
+          <Route path="/" element={<HomeScreen info = {info} setInfo={setInfo}/>} />
+          <Route path="/sessoes/:idFilme" element={<ScheduleList info = {info} setInfo={setInfo}/>} />
+          <Route path="/assentos/:idSessao" element = {<SeatList info = {info} setInfo={setInfo}/>}/>
+          <Route path="/sucesso" element = {<Sucesso info = {info} setInfo={setInfo}/>}/>
         </Routes>
       </TelaApp>
     </BrowserRouter>

@@ -2,8 +2,11 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 
-export default function ScheduleList() {
+export default function ScheduleList(props) {
+
+    const {info, setInfo} = props;
     const { idFilme } = useParams();
     const [horario, setHorario] = useState(undefined);
 
@@ -13,9 +16,11 @@ export default function ScheduleList() {
         promise.catch((err) => console.log(err.response.data))
     }, [])
 
+    
 
-    if(horario === undefined){
-        return(
+
+    if (horario === undefined) {
+        return (
             <div>Carregando...</div>
         )
     }
@@ -26,10 +31,19 @@ export default function ScheduleList() {
             <TimeList>
                 {horario.days.map((sessao) =>
                     <>
-                        <Day key={sessao.id}>{sessao.weekday} - {sessao.date}</Day>
+                        <Day key={sessao.id + sessao.weekday}>{sessao.weekday} - {sessao.date}</Day>
                         {sessao.showtimes.map((hora) =>
                             <>
-                                <Hour key = {hora.id}>{hora.name}</Hour>
+                                <Link key={hora.id} to = {`/assentos/${hora.id}`} style={{ textDecoration: 'none' }}>
+                                    <Hour onClick={()=>{
+                                        const newInfo = [...info];
+                                        newInfo[0].filme = horario.title; 
+                                        newInfo[0].data = sessao.weekday; 
+                                        newInfo[0].hora = hora.name;
+                                        console.log(newInfo); 
+                                        setInfo(newInfo)}
+                                    } key={hora.id}><p>{hora.name}</p></Hour>
+                                </Link>
                             </>
                         )}
 
@@ -38,7 +52,7 @@ export default function ScheduleList() {
             </TimeList>
             <Footer>
                 <Borda>
-                    <img src = {horario.posterURL}/>
+                    <img src={horario.posterURL} />
                 </Borda>
                 <h1>{horario.title}</h1>
             </Footer>
