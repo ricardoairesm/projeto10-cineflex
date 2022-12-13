@@ -23,7 +23,7 @@ export default function SeatList(props) {
 
     let habilitar = true;
 
-    if(info[0].cpf.length>11 && info[0].name.length>0 && info[0].assentos.length>0){
+    if(info[0].cpf.length>10 && info[0].name.length>0 && info[0].assentos.length>0){
         habilitar = false;
     }
 

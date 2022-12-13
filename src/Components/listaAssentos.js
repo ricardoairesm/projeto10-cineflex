@@ -43,7 +43,9 @@ export default function ListaAssentos(props) {
                     }
 
                     return (
-                        <Cadeira data-test="seat" key={index} color="#FBE192" borda="#F7C52B">{cadeira.name}</Cadeira>
+                        <Cadeira onClick={()=>{
+                            alert("Esse assento não está disponível");
+                        }} data-test="seat" key={index} color="#FBE192" borda="#F7C52B">{cadeira.name}</Cadeira>
                     )
                 })}
             </AssentosList>
