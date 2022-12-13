@@ -6,7 +6,7 @@ export default function Inputs(props){
         <>
         <InputNome>
         <p>Nome do comprador:</p>
-        <Input1 data-test="client-name" onChange={e =>{
+        <input data-test="client-name" onChange={e =>{
             const newInfo = [...info];
             newInfo[0].name = e.target.value; 
             setInfo(newInfo)}
@@ -14,7 +14,7 @@ export default function Inputs(props){
         </InputNome>
         <InputCPF>
         <p>CPF do comprador:</p>
-        <Input2 data-test="client-cpf" onChange={e =>{
+        <input data-test="client-cpf" onChange={e =>{
             const newInfo = [...info];
             newInfo[0].cpf = e.target.value; 
             setInfo(newInfo)}
