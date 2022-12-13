@@ -14,7 +14,7 @@ export default function Inputs(props){
         </InputNome>
         <InputCPF>
         <p>CPF do comprador:</p>
-        <Input2 type = "number" data-test="client-cpf" onChange={e =>{
+        <Input2 type = "text" data-test="client-cpf" onChange={e =>{
             const newInfo = [...info];
             newInfo[0].cpf = e.target.value; 
             setInfo(newInfo)}
