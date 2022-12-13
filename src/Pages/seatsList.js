@@ -21,11 +21,7 @@ export default function SeatList(props) {
         }
     ];
 
-    let habilitar = true;
-
-    if(info[0].cpf.length>10 && info[0].name.length>0 && info[0].assentos.length>0){
-        habilitar = false;
-    }
+  
 
 
     useEffect(() => {
@@ -47,7 +43,7 @@ export default function SeatList(props) {
             <Legenda/>
             <Inputs info = {info} setInfo = {setInfo}/>
             <Link data-test="book-seat-btn" to = "/sucesso">
-            <Botao   disabled = {habilitar} onClick={()=>{
+            <Botao   onClick={()=>{
                 axios.post(postURL,{ 
                     ids:info[0].assentos,
                     name:info[0].name,

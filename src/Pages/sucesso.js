@@ -107,6 +107,7 @@ letter-spacing: 0.04em;
 color: #293845;
 
 p{
+width:320px;
 word-wrap:break-word;
 margin-top:1px;
 font-family: 'Roboto';
@@ -114,8 +115,6 @@ font-style: normal;
 font-weight: 400;
 font-size: 22px;
 line-height: 26px;
-display: flex;
-align-items: center;
 letter-spacing: 0.04em;
 
 color: #293845;
