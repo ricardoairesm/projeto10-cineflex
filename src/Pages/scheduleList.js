@@ -35,8 +35,8 @@ export default function ScheduleList(props) {
                         <Day >{sessao.weekday} - {sessao.date}</Day>
                         {sessao.showtimes.map((hora) =>
                             <>
-                                <Link key={hora.id} to={`/assentos/${hora.id}`} style={{ textDecoration: 'none' }}>
-                                    <Hour data-test="movie-day" onClick={() => {
+                                <Link data-test="movie-day" key={hora.id} to={`/assentos/${hora.id}`} style={{ textDecoration: 'none' }}>
+                                    <Hour  onClick={() => {
                                         const newInfo = [...info];
                                         newInfo[0].filme = horario.title;
                                         newInfo[0].data = sessao.weekday;

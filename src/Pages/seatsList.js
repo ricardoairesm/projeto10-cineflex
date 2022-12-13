@@ -46,8 +46,8 @@ export default function SeatList(props) {
             <ListaAssentos info = {info} setInfo = {setInfo} clicked = {clicked} setClicked = {setClicked} assentos = {assentos}/>
             <Legenda/>
             <Inputs info = {info} setInfo = {setInfo}/>
-            <Link to = "/sucesso">
-            <Botao  data-test="book-seat-btn" disabled = {habilitar} onClick={()=>{
+            <Link data-test="book-seat-btn" to = "/sucesso">
+            <Botao   disabled = {habilitar} onClick={()=>{
                 axios.post(postURL,{ 
                     ids:info[0].assentos,
                     name:info[0].name,
