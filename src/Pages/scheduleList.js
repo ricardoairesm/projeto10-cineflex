@@ -30,12 +30,12 @@ export default function ScheduleList(props) {
             <Title>Selecione o horário</Title>
             <TimeList>
                 {horario.days.map((sessao) =>
-                    <Horarios  data-test="showtime" >
+                    <Horarios  data-test="movie-day" >
 
                         <Day >{sessao.weekday} - {sessao.date}</Day>
                         {sessao.showtimes.map((hora) =>
                             <>
-                                <Link data-test="movie-day" key={hora.id} to={`/assentos/${hora.id}`} style={{ textDecoration: 'none' }}>
+                                <Link data-test="showtime" key={hora.id} to={`/assentos/${hora.id}`} style={{ textDecoration: 'none' }}>
                                     <Hour  onClick={() => {
                                         const newInfo = [...info];
                                         newInfo[0].filme = horario.title;
